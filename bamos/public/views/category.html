@@ -1,0 +1,26 @@
+
+<div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    SORT 
+      <span class="glyphicon glyphicon-option-vertical"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">    
+    <li><a href="userBlocks" ng-click="takeJSONlistFromAPI('event?sort=title')"><i class='glyphicon glyphicon-menu-up'></i>title</a></li>
+    <li><a href="userBlocks" ng-click="takeJSONlistFromAPI('event?sort=title,desc')"><i class='glyphicon glyphicon-menu-down'></i>title</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="userBlocks" ng-click="takeJSONlistFromAPI('event?sort=title')"><i class='glyphicon glyphicon-menu-up'></i>id</a></li>
+    <li><a href="userBlocks" ng-click="takeJSONlistFromAPI('event?sort=title,desc')"><i class='glyphicon glyphicon-menu-down'></i>id</a></li>
+  </ul>
+</div>
+
+
+<div ng-repeat='(baseKey, baseValue) in Entitys._embedded' class="table-responsive">
+	<div class="col-md-12"><h2 class='headerH2'>{{baseKey}}</h2></div>
+	<ul class="list-group">
+	<li ng-repeat='(middleKey, middleValue) in baseValue' class="list-group-item">		
+		<a href='category' ng-repeat='(key, value) in middleValue' ng-if=" key == 'title' " data-id='{{middleValue.hjid}}' ng-click='takeEntity($event,"category/")'>		
+			{{value}}			
+		</a>		
+	</li>	
+	</ul>
+</div>

@@ -1,0 +1,10 @@
+<div ng-repeat='(baseKey, baseValue) in Entitys._embedded' class="col-md-12">
+	<div class="col-md-12"><h2 class='headerH2'>{{baseKey}}</h2></div>
+	<div ng-repeat='(middleKey, middleValue) in baseValue' class="col-md-12">
+		<!--UI-->
+		<p ng-repeat='(key, value) in middleValue' ng-if=" key != '_links' ">			
+			<textarea ng-model='value' class="form-control" rows="5"></textarea>
+		</p>
+		<!--#UI-->
+	</div>	
+</div>

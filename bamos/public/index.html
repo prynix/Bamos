@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bamos">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bamos Admin</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="css/favicon.ico" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="admin/AdminLTE.min.css">
+  <link rel="stylesheet" href="admin/skin-blue.min.css">
+
+  <script type='text/javascript ' src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type='text/javascript ' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type='text/javascript ' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script type='text/javascript ' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+  <script type='text/javascript ' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
+  <script type='text/javascript ' src="admin/app.min.js"></script>
+  <script type='text/javascript ' src="app.js"></script>
+</head>
+
+<body ng-controller="bamosController" ng-cloak>
+
+  <div class="container" id='loginWrap '>
+    <!--login form-->
+    <div class="row" ng-hide='isTokenFlag(tokenFlag)' ng-click="isTokenFlag(tokenFlag)">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-4">
+        <div class="panel panel-primary  form">
+          <div class="panel-heading font120 text-center">
+            Admin Login
+          </div>
+          <div class="panel-body">
+            <form id='signUp' action="" method="post">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="emailAddress" class="col-sm-4 control-label">Username:</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="email" placeholder="Enter Username" type="text" class="form-control" autofocus ng-model="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="col-sm-4 control-label">Password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" name="password" placeholder="Enter Password" type="password" class="form-control" ng-model="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-8 col-sm-offset-4">
+                    <button type="submit" class="btn btn-lg btn-primary"><i class='glyphicon glyphicon-log-in'></i>  submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--# login form-->
+
+  <div class="wrapper" ng-show='isTokenFlag(tokenFlag)'>
+
+    <!-- Main Header -->
+    <header class="main-header">
+
+      <!-- Logo -->
+      <a class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">bamos</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>{{email}}</b></span>
+      </a>
+
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+              <a ng-click="logout()"><i class="glyphicon glyphicon-log-out"></i> logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+
+        <!-- search form (Optional) -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+          <li class="header">ADMIN MENU</li>
+          <!-- Optionally, you can add icons to the links -->
+
+
+
+          <li class="treeview">
+            <a href="User" ng-click="takeJSONlistFromAPI('user')"><i class="fa fa-users"></i> <span>USER</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+
+            </ul>
+          </li>
+
+
+
+          <li class="treeview">
+            <a href="Event" ng-click="takeJSONlistFromAPI('event')"><i class="fa fa-glass"></i> <span>EVENT</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            </ul>
+          </li>
+
+
+
+          <li class="treeview">
+            <a href="Category" ng-click="takeJSONlistFromAPI('category')"><i class="fa fa-pie-chart"></i> <span>CATEGORY</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="TOS" ng-click="takeJSONlistFromAPI('tos')"><i class="fa fa-map"></i> <span>Terms of service</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a><i class="fa fa-object-group"></i> <span>OTHER?</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+              <li><a href="" ng-click="takeJSONlistFromAPI('')">profile</a></li>
+              <li><a href="" ng-click="takeJSONlistFromAPI('')">conversation</a></li>
+              <!--messages here-->
+
+            </ul>
+          </li>
+
+
+        </ul>
+        <!-- /.sidebar-menu -->
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1></h1>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <div ng-view ng-cloak>
+
+        </div>
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+  </div>
+  <!-- ./wrapper -->
+
+</body>
+
+
+</html>

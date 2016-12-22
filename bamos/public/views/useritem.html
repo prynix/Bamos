@@ -1,0 +1,100 @@
+<a href='User' type="button" class="btn btn-info" ng-click="takeJSONlistFromAPI('user')"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+<div class="btn-group pull-right">
+  <button  ng-click="create()" type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i> create</button>
+  <button  ng-click="delet()" type="button" class="btn btn-primary"><i class="fa fa-times"></i> delete</button>
+</div>
+
+<!--div class="dropdown" style='float:right'>
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    MENU  
+      <span class="glyphicon glyphicon-option-vertical"></span>
+  </button>
+  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu3">
+    
+    <li role="separator" class="divider"></li>
+    <li><a href="userFollow" ng-click="takeJSONlistFromAPI('userFollow')">user follow</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="userBlocks" ng-click="takeJSONlistFromAPI('userBlocks')">user blocks</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="userFavor" ng-click="takeJSONlistFromAPI('userFavor')">user favor</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="userLike" ng-click="takeJSONlistFromAPI('userLike')">user like</a></li>
+    <li role="separator" class="divider"></li>
+    
+  </ul>
+</div-->
+
+
+
+<!--UserCard-->
+ <div class="col-md-12 userProfileCard">
+ 	
+<!--avatar-->
+<div ng-repeat='(propKey, propValue) in entity_relateds' ng-if=' propValue.propertyName == "avatar" ' class="col-md-4 col-sm-12 col-xs-12 userProfileAvatar card">
+	<div class='avatarka' style='background-image:url("{{propValue.propertyData.fullUrl}}");'></div>
+</div>
+
+	<div class="col-md-1 offset"></div>
+
+<!--infoblock-->
+<div class="col-md-7 col-sm-12 col-xs-12  infoblock text-center card">
+	<button ng-click="sendReformedEntityObjectToAPI($event, 'update', true)" class='update' title='update'><i class="glyphicon glyphicon-save"></i></button>
+	<!--username-->
+	<div class="col-md-12 userName item">
+		<h2 class='col-md-4 glyphicon glyphicon-eye-open'> username</h2>
+		<input class="col-md-8" type="text" ng-model='entity.name'>
+	</div>
+	<!--# username-->
+
+	<!--about-->
+	<div class="col-md-12 about item">
+		<figure><i class='fa fa-info-circle'></i> about</figure>
+		<textarea rows="4" ng-model="entity.about"></textarea>
+	</div>
+	<!--# about-->
+
+	<!--location-->
+	<div ng-repeat='(propKey, propValue) in entity_relateds' ng-if=' propValue.propertyName == "location" '  class="col-md-12 geo item">
+		<div class="col-md-12 item">
+			<div class="col-md-6 city">
+			<figure class='glyphicon glyphicon-road'> location</figure><br/>
+			<input type="text" ng-model='propValue.propertyData.title'>
+			<input type="text" ng-model='propValue.propertyData.description'>
+			</div>
+			<div class="col-md-6 location">
+			<div class="col-md-12">
+				<figure class='col-md-6 glyphicon glyphicon-globe'> latitude</figure>
+				<input type="number" class='col-md-6' ng-model='propValue.propertyData.latitude'>
+			</div>	
+			<div class="col-md-12">
+				<figure class='col-md-6 glyphicon glyphicon-globe'> longitude</figure>
+				<input type="number" class='col-md-6' ng-model='propValue.propertyData.longitude'>
+			</div>			
+		</div>
+		</div>		
+	</div>
+	<!--# location-->
+
+	<!--age-likes-shares-->
+	<div class="col-md-12 als item">
+		<div class="col-md-4 age">
+			<figure class='col-md-12 fa fa-user-secret'> age</figure>
+			<input type="number" class='col-md-12' ng-model='entity.age'>
+		</div>
+		<div class="col-md-4 likes">
+			<figure class='col-md-12 fa fa-heart'> likes</figure>
+			<input type="number" class='col-md-12' ng-model='entity.likes'>
+		</div>
+		<div class="col-md-4 shares">
+			<figure class='col-md-12 fa fa-share-alt'> shares</figure>
+			<input type="number" class='col-md-12' ng-model='entity.shares'>
+		</div>
+	</div>
+	<!--# age-likes-shares-->	
+	
+</div>
+<!--# infoblock-->
+ </div>
+<!--# UserCard-->
+

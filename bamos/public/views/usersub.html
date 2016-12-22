@@ -1,0 +1,13 @@
+<a href='User' type="button" class="btn btn-info" ng-click="takeJSONlistFromAPI('user')"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+<div ng-repeat='(baseKey, baseValue) in Entitys._embedded' class="table-responsive">
+	<div class="col-md-12"><h2 class='headerH2'>{{baseKey}}</h2></div>	
+	<table ng-repeat='(middleKey, middleValue) in baseValue' class="table">
+		<!--UI-->				
+		<tr ng-repeat='(key, value) in middleValue._embedded.event' ng-if=" key != '_links' ">			
+			<td>{{key}}</td>
+			<td><input type="text" ng-model='value'/></td>				
+		</tr>						
+		<!--#UI-->
+	</table>		
+</div>
